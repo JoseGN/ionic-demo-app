@@ -1,0 +1,133 @@
+<ion-content fullscreen>
+  <div class="background"></div>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="welcome" text="Volver" color="light"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item class="ion-padding-horizontal">
+    <ion-text color="light">
+      <h1>Crear cuenta</h1>
+    </ion-text>
+  </ion-item>
+
+  <hr>
+
+  <form [formGroup]="form" (ngSubmit)="signUpUser()">
+    <ion-item class="ion-padding-horizontal" lines="none">
+      <ion-text color="light">
+        <h4>Datos personales</h4>
+      </ion-text>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Nombre</ion-label>
+      <ion-input color="light" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Apellido</ion-label>
+      <ion-input color="light" formControlName="last_name"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal" formGroupName="detail">
+      <ion-label position="stacked" color="light">Fecha de nacimiento</ion-label>
+      <ion-datetime displayFormat="MMMM DD YYYY" min="1950-01-01" max="1998-12-31" pickerFormat="MMMM DD YYYY"
+        monthNames="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre"
+        (ionChange)="selectIonDate()" color="light" formControlName="birthdate"></ion-datetime>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label color="light">Pais</ion-label>
+      <ion-select formControlName="country" okText="Aceptar" cancelText="Cancelar"
+        (ionChange)="onCountrySelect(form.controls.country)">
+        <!-- México, Colombia, Ecuador, Chile, Perú, Argentina -->
+        <ion-select-option *ngFor="let country of countries" [value]="country.name">{{country.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label color="light">Estado</ion-label>
+      <ion-select okText="Aceptar" cancelText="Cancelar" formControlName="state">
+        <ion-select-option *ngFor="let state of states" [value]="state">{{state}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Celular</ion-label>
+      <ion-input color="light" formControlName="cel"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal" formGroupName="detail">
+      <ion-label position="stacked" color="light">Dirección (calle y número)</ion-label>
+      <ion-input color="light" formControlName="address"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal" formGroupName="detail">
+      <ion-label position="stacked" color="light">Código Postal</ion-label>
+      <ion-input color="light" formControlName="zipcode"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item class="ion-padding-horizontal" lines="none">
+      <ion-text color="light">
+        <h4>Datos profesionales</h4>
+      </ion-text>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal" formGroupName="detail">
+      <ion-label position="stacked" color="light">Cédula profesional</ion-label>
+      <ion-input color="light" formControlName="professional_id"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal" formGroupName="detail">
+      <ion-label color="light">Especialidades</ion-label>
+      <ion-select formControlName="specialties" okText="Aceptar" cancelText="Cancelar" multiple>
+        <ion-select-option *ngFor="let sp of specialties" [value]="sp.id">{{sp.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal" formGroupName="detail">
+      <ion-label color="light">Años dando terapia</ion-label>
+      <ion-select formControlName="therapy_years" okText="Aceptar" cancelText="Cancelar">
+        <ion-select-option *ngFor="let y of years" [value]="y">{{y}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal" formGroupName="detail">
+      <ion-label color="light">Años dando supervisión</ion-label>
+      <ion-select formControlName="supervising_years" okText="Aceptar" cancelText="Cancelar">
+        <ion-select-option *ngFor="let y of years" [value]="y">{{y}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <ion-item class="ion-padding-horizontal" lines="none">
+      <ion-text color="light">
+        <h4>Accesos</h4>
+      </ion-text>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Email</ion-label>
+      <ion-input color="light" type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Contraseña</ion-label>
+      <ion-input color="light" type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-end ion-margin-top" lines="none">
+      <ion-label color="light">Acepto los Términos y Condiciones</ion-label>
+      <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
+    </ion-item>
+    <ion-item class="ion-padding-horizontal" lines="none">
+      <a (click)="showTerms()"
+        style="margin: auto; margin-top: 0; background-color: #6e7c6a; padding: 3px 10px; color: white;">Leer Términos
+        y
+        Condiciones</a>
+    </ion-item>
+
+    <ion-item class="ion-padding-horizontal ion-text-center" lines="none">
+      <ion-text color="light">
+        Para empezar a usar MentalHealth App,
+        <br>
+        confirma tu cuenta en el mail que registraste.
+      </ion-text>
+    </ion-item>
+    <br><br>
+    <ion-button expand="full" size="large" shape="round" type="submit">
+      Registrarse
+    </ion-button>
+  </form>
+
+
+
+</ion-content>

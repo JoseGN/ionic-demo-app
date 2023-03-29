@@ -1,0 +1,106 @@
+<div class="background-1"></div>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentLogoutAlert()"
+                  color="light"
+                  iconOnly>
+        <ion-icon name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <!-- <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentLogoutAlert()"
+                  color="light"
+                  iconOnly>
+        <ion-icon name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar> -->
+  <ion-refresher slot="fixed"
+                 color="light"
+                 (ionRefresh)="getUser($event)">
+    <ion-refresher-content color="light"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-item class="ion-text-center"
+            lines="none">
+    <ion-label color="light"
+               style="font-size: 1.5em;">Bienvenido {{user.name}}</ion-label>
+  </ion-item>
+  <ion-grid class="home-content">
+    <ion-row>
+      <ion-col size="4">
+        <ion-button class="home-button"
+                    expand="full"
+                    (click)="goToSessionPage('patient')">
+          <div class="notification-badge-wrapper">
+            <span *ngIf="therapistMessagesUnread"
+                  class="notification-badge">1</span>
+            <ion-icon name="chatboxes"
+                      mode="md"></ion-icon>
+            Mi Sesión <br> &nbsp;
+          </div>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button class="home-button"
+                    expand="full"
+                    (click)="goToSupportChat()">
+          <div class="notification-badge-wrapper">
+            <span *ngIf="supportMessagesUnread"
+                  class="notification-badge">1</span>
+            <ion-icon name="headset"
+                      mode="md"></ion-icon>
+            Chat de <br>Servicio
+          </div>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button class="home-button"
+                    expand="full"
+                    [routerLink]="['/plans']">
+          <div>
+            <ion-icon name="card"
+                      mode="md"></ion-icon>
+            Pagar <br> &nbsp;
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-button color="tertiary"
+                  *ngIf="user.therapist"
+                  shape="round"
+                  class="ion-margin-top"
+                  (click)="openNextAppointment()">
+        Agendar Cita
+      </ion-button>
+    </ion-row>
+    <ion-row class="ion-padding-horizontal ion-justify-content-center ion-align-items-center"
+             *ngIf="user.nextAppointment">
+      <ion-card color="secondary next-appointment-info"
+                class="ion-padding-horizontal">
+        <ion-card-content class="ion-text-center">
+          <ion-card-title>
+            Próxima cita
+          </ion-card-title>
+          <ion-label>
+            <h3 class="date">{{user.nextAppointment.date}}</h3>
+            <span class="am-pm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span
+                  class="hour">{{user.nextAppointment.start_time}}</span> <span
+                  class="am-pm">{{user.nextAppointment.am_pm}}</span>
+            <p class="timezone">(Hora de la Ciudad de México)</p>
+          </ion-label>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <app-menu></app-menu>
+</ion-footer>

@@ -1,0 +1,102 @@
+ion-content {
+  --background: transparent;
+}
+
+ion-toolbar,
+ion-item {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+
+ion-select {
+  color: var(--ion-color-light);
+}
+
+.background-1 {
+  z-index: -2;
+}
+
+.header-md:after {
+  display: none;
+}
+/* .home-button {
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+  color: var(--ion-color-light);
+  background-color: var(--ion-color-primary);
+} */
+
+ion-icon.icon-large {
+  font-size: 64px;
+}
+
+.home-button {
+  border-radius: 10px;
+  height: 100%;
+  overflow: hidden;
+
+  div {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 10%;
+
+    .notification-badge {
+      top: -5px
+    }
+
+    ion-icon {
+      margin-bottom: 10px;
+      font-size: 72px;
+    }
+  }
+}
+
+.next-appointment-info {
+  border-radius: 10px;
+  max-width: 300px;
+
+  .avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    ion-avatar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 5px;
+
+      img {
+        border: 3px solid whitesmoke;
+      }
+    }
+  }
+
+
+  .hour {
+    font-size: 5em;
+  }
+
+  .date {
+    transform: translateY(70%);
+  }
+
+  .date,
+  .am-pm {
+    margin: 0;
+    font-size: 1.3em;
+  }
+
+  .timezone {
+    margin-top: -20px;
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-height: 730px) {
+  .home-content {
+    margin-top: 50px;
+  }
+}

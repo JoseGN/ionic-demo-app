@@ -1,0 +1,91 @@
+<ion-content fullscreen>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="welcome" text="Volver" color="light"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <div class="background"></div>
+
+  <ion-item class="ion-padding-horizontal" lines="none">
+    <ion-text color="light">
+      <h1>Crear cuenta</h1>
+    </ion-text>
+  </ion-item>
+
+  <br>
+  <br>
+  <form [formGroup]="form" (ngSubmit)="signUpUser()">
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Nombre</ion-label>
+      <ion-input color="light" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Apellido</ion-label>
+      <ion-input color="light" formControlName="last_name"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Edad</ion-label>
+      <ion-input color="light" type="number" formControlName="age"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label color="light">Pais</ion-label>
+      <ion-select formControlName="country" okText="Aceptar" cancelText="Cancelar"
+        (ionChange)="onCountrySelect(form.controls.country)">
+        <!-- México, Colombia, Ecuador, Chile, Perú, Argentina -->
+        <ion-select-option *ngFor="let country of countries" [value]="country.name">{{country.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label color="light">Estado</ion-label>
+      <ion-select formControlName="state" okText="Aceptar" cancelText="Cancelar">
+        <ion-select-option *ngFor="let state of states" [value]="state">{{state}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Email</ion-label>
+      <ion-input color="light" type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Celular</ion-label>
+      <ion-input color="light" formControlName="cel"></ion-input>
+    </ion-item>
+    <ion-item color="light" class="ion-padding-horizontal">
+      <ion-label position="stacked" color="light">Contraseña</ion-label>
+      <ion-input color="light" type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <!-- <ion-item color="light"
+              class="ion-padding-horizontal">
+      <ion-label position="stacked"
+                 color="light">Confirmar Contraseña</ion-label>
+      <ion-input color="light"
+                 type="password"></ion-input>
+    </ion-item> -->
+    <ion-item color="light" class="ion-padding-end ion-margin-top" lines="none">
+      <ion-label color="light">Acepto los Términos y Condiciones</ion-label>
+      <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
+    </ion-item>
+    <ion-item class="ion-padding-horizontal" lines="none">
+      <a (click)="showTerms()"
+        style="margin: auto; margin-top: 0; background-color: #6e7c6a; padding: 3px 10px; color: white;">Leer Términos
+        y
+        Condiciones</a>
+    </ion-item>
+    <ion-item class="ion-padding-horizontal ion-text-center" lines="none">
+      <ion-text color="light">
+        Para empezar a usar MentalHealth App,
+        <br>
+        confirma tu cuenta en el mail que registraste.
+      </ion-text>
+    </ion-item>
+    <br><br>
+    <ion-button expand="full" size="large" shape="round" type="submit">
+      Registrarse
+    </ion-button>
+  </form>
+  <ion-item class="ion-padding-horizontal" lines="none">
+    <a [routerLink]="['/sign-up-therapist']" style="margin: auto; padding: 3px 10px; color: white;">Soy Terapeuta</a>
+  </ion-item>
+
+</ion-content>

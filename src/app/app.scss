@@ -1,0 +1,134 @@
+// App Styles
+// ----------------------------------------------------------------------------
+// Put style rules here that you want to apply to the entire application. These
+// styles are for the entire app and not just one component. Additionally, this
+// file can hold Sass mixins, functions, and placeholder classes to be imported
+// and used throughout the application.
+@import "../assets/icon/payment.icons.css";
+
+.background-1,
+.background-translucent {
+  background-image: url('/assets/back_2.png');
+  background-color: transparent;
+  position: fixed;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  // pointer-events: none;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.background-translucent {
+  background-image: none;
+  background-color: rgba(255,255,255, 0.15);
+}
+
+.background-welcome {
+  background-image: url('/assets/back_1.png');
+  background-color: transparent;
+  position: absolute;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  background-size: cover;
+}
+
+.opacity-6 {
+  opacity: .6;
+}
+
+.text-primary {
+  color: var(--ion-color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--ion-color-secondary) !important;
+}
+
+.text-tertiary {
+  color: var(--ion-color-tertiary) !important;
+}
+
+.text-danger {
+  color: var(--ion-color-danger) !important;
+}
+
+.custom-loading {
+  // background: linear-gradient(0deg, rgb(17, 0, 34) 0%, rgb(36, 10, 61) 100%);
+  // --background: linear-gradient(0deg, rgb(17, 0, 34) 0%, rgb(36, 10, 61) 100%);
+  // background: linear-gradient(224deg, #884aa6, #2d0e4d);
+  background: linear-gradient(0deg, rgba(60,39,85,1) 0%, rgba(55,16,96,1) 100%);
+  --background: linear-gradient(0deg, rgba(60,39,85,1) 0%, rgba(55,16,96,1) 100%);
+  background-size: 400% 400%;
+  animation: custom-loader 3s ease infinite;
+
+  .loading-wrapper {
+    background: var(--ion-color-light);
+  }
+
+}
+
+.notification-badge-wrapper {
+  position: relative;
+
+  .notification-badge {
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    font-size: .8rem;
+    font-weight: bold;
+    line-height: 1.2rem;
+    text-align: center;
+  }
+}
+
+ion-refresher-content {
+  --color: white;
+  .refresher-pulling,
+  .refresher-refreshing,
+  .refresher-md .refresher-pulling-icon,
+  .refresher-md .refresher-pulling-text,
+  .refresher-md .refresher-refreshing-icon,
+  .refresher-md .refresher-refreshing-text,
+  div.refresher-pulling > div > ion-icon {
+    --color: white;
+    color: var(--ion-text-color,#fff) !important;
+  }
+}
+
+.header-ios ion-toolbar:last-child {
+    border: 0;
+    --border-width: 0 !important;
+}
+
+ion-header:after,
+  .header-md:after {
+  display: none !important;
+}
+
+@keyframes custom-loader {
+  0% {
+    background-position: 0% 50%
+  }
+
+  50% {
+    background-position: 100% 51%
+  }
+
+  100% {
+    background-position: 0% 50%
+  }
+}

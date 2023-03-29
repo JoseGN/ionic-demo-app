@@ -1,0 +1,43 @@
+ <ion-header>
+   <ion-toolbar color="primary">
+     <ion-buttons slot="start">
+       <ion-back-button [defaultHref]="defaultBackHref"
+                        text="Volver"
+                        (click)="navigateHome()"></ion-back-button>
+     </ion-buttons>
+     <ion-buttons slot="end"
+                  *ngIf="loginType=='therapist'">
+       <ion-button (click)="presentCallAlert()">
+         <ion-icon name="videocam"
+                   size="large"></ion-icon>
+       </ion-button>
+       <ion-button (click)="presentModal()">
+         <ion-icon name="calendar"
+                   size="large"></ion-icon>
+       </ion-button>
+       <ion-button (click)="presentOptions($event)">
+         <ion-icon name="more"
+                   size="large"></ion-icon>
+       </ion-button>
+     </ion-buttons>
+     <!-- <ion-buttons slot="end">
+       <ion-button (click)="openVideoCallScreen()">
+         <ion-icon name="videocam"
+                   size="large"></ion-icon>
+       </ion-button>
+     </ion-buttons> -->
+     <ion-title>
+       <ion-buttons>
+         <ion-button (click)="showProfile()"
+                     size="large"
+                     style="font-size: 19px; text-transform: capitalize;">
+           {{receiver?.name}} {{receiver?.last_name}}
+         </ion-button>
+       </ion-buttons>
+     </ion-title>
+   </ion-toolbar>
+ </ion-header>
+ <ion-content>
+   <chat-component [receiver]="receiver"
+                   [sender]="sender"></chat-component>
+ </ion-content>
